@@ -29,12 +29,10 @@
     <section class="container mx-auto px-6 py-12 flex flex-col-reverse md:flex-row items-center">
         <div class="md:w-1/2 mt-8 md:mt-0">
             <h1 class="text-5xl font-extrabold leading-tight mb-4 text-black">
-                Asli Jambi<br>
-                Sertifikasi BPOM<br>
-                <span class="text-[#cc0000]">Halal</span>
+                {!! $heroSection ? nl2br(e($heroSection->title)) : 'Asli Jambi<br>Sertifikasi BPOM<br><span class="text-[#cc0000]">Halal</span>' !!}
             </h1>
             <p class="text-gray-800 mb-8 max-w-md text-base">
-                Nikmati kelezatan Pempek Abdel dengan cuko kental khasnya. Dikemas vakum, tahan lama, dan siap kirim aman ke seluruh kota di Indonesia.
+                {!! $heroSection ? nl2br(e($heroSection->description)) : 'Nikmati kelezatan Pempek Abdel dengan cuko kental khasnya. Dikemas vakum, tahan lama, dan siap kirim aman ke seluruh kota di Indonesia.' !!}
             </p>
             <div class="flex space-x-6 items-center">
                 <a href="#" class="bg-[#cc0000] text-white px-8 py-3 rounded-lg font-bold hover:bg-red-800 transition shadow-lg">Pesan Sekarang (WA)</a>
@@ -61,33 +59,120 @@
 
 <section class="container mx-auto px-6 py-8">
         <div class="bg-white border border-gray-100 rounded-[40px] shadow-sm py-10 flex flex-col md:flex-row justify-between items-center text-center divide-y md:divide-y-0 md:divide-x divide-gray-200">
-            
-            <div class="px-4 py-4 md:py-0 w-full flex flex-col items-center">
-                <div class="w-12 h-12 bg-[#cc0000] rounded-full flex items-center justify-center text-white mb-4">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                </div>
-                <p class="font-bold text-gray-900 text-sm">Senin - Sabtu</p>
-                <p class="font-bold text-gray-900 text-sm mb-2">09:00 - 19:00</p>
-                <p class="text-gray-500 text-xs">Jam Buka</p>
-            </div>
+            @forelse($storeInfos as $info)
+                <div class="px-4 py-4 md:py-0 w-full flex flex-col items-center">
+                    <div class="w-12 h-12 bg-[#cc0000] rounded-full flex items-center justify-center text-white mb-4">
+                        @switch($info->icon)
+                            @case('clock')
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                @break
+                            @case('location')
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                @break
+                            @case('phone')
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                                @break
+                            @default
+                                <span class="text-xs">ICON</span>
+                        @endswitch
+                    </div>
 
-            <div class="px-4 py-4 md:py-0 w-full flex flex-col items-center">
-                <div class="w-12 h-12 bg-[#cc0000] rounded-full flex items-center justify-center text-white mb-4">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <p class="font-bold text-gray-900 text-sm">{{ $info->title }}</p>
+                    @if($info->subtitle)
+                        <p class="font-bold text-gray-900 text-sm mb-2">{{ $info->subtitle }}</p>
+                    @endif
+                    <p class="text-gray-500 text-xs">{{ $info->label }}</p>
                 </div>
-                <p class="font-bold text-gray-900 text-sm">Jl. Pratu Satir, The Hok, Kec. Jambi Sel.,</p>
-                <p class="font-bold text-gray-900 text-sm mb-2">Kota Jambi, Jambi 36125</p>
-                <p class="text-gray-500 text-xs">Lokasi Toko Offline</p>
-            </div>
-
-            <div class="px-4 py-4 md:py-0 w-full flex flex-col items-center">
-                <div class="w-12 h-12 bg-[#cc0000] rounded-full flex items-center justify-center text-white mb-4">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+            @empty
+                <div class="px-4 py-4 md:py-0 w-full flex flex-col items-center">
+                    <div class="w-12 h-12 bg-[#cc0000] rounded-full flex items-center justify-center text-white mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <p class="font-bold text-gray-900 text-sm">Senin - Sabtu</p>
+                    <p class="font-bold text-gray-900 text-sm mb-2">09:00 - 19:00</p>
+                    <p class="text-gray-500 text-xs">Jam Buka</p>
                 </div>
-                <p class="font-bold text-gray-900 text-sm mb-2 mt-2.5">0811-7408-504</p>
-                <p class="text-gray-500 text-xs">Nomor Telepon</p>
-            </div>
 
+                <div class="px-4 py-4 md:py-0 w-full flex flex-col items-center">
+                    <div class="w-12 h-12 bg-[#cc0000] rounded-full flex items-center justify-center text-white mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <p class="font-bold text-gray-900 text-sm">Jl. Pratu Satir, The Hok, Kec. Jambi Sel.,</p>
+                    <p class="font-bold text-gray-900 text-sm mb-2">Kota Jambi, Jambi 36125</p>
+                    <p class="text-gray-500 text-xs">Lokasi Toko Offline</p>
+                </div>
+
+                <div class="px-4 py-4 md:py-0 w-full flex flex-col items-center">
+                    <div class="w-12 h-12 bg-[#cc0000] rounded-full flex items-center justify-center text-white mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    </div>
+                    <p class="font-bold text-gray-900 text-sm mb-2 mt-2.5">0811-7408-504</p>
+                    <p class="text-gray-500 text-xs">Nomor Telepon</p>
+                </div>
+            @endforelse
+        </div>
+    </section>
+
+<section id="keunggulan" class="container mx-auto px-6 py-16">
+        <div class="text-center mb-12">
+            <p class="text-[#cc0000] font-bold text-sm tracking-widest uppercase">Keunggulan</p>
+            <h2 class="text-3xl font-black mt-2 text-black">Mengapa Pempek Abdel Jadi Pilihan Utama?</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            @forelse($advantages as $advantage)
+                <div class="bg-yellow-400 rounded-3xl p-8 shadow-md hover:shadow-lg transition">
+                    <div class="bg-white w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6 shadow-sm">
+                        @if($advantage->icon)
+                            <img src="{{ asset('storage/' . $advantage->icon) }}" alt="{{ $advantage->title }}" class="h-10 w-10 object-contain">
+                        @else
+                            <svg class="h-8 w-8 text-gray-700" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        @endif
+                    </div>
+                    <h3 class="font-bold text-xl mb-4 text-black">{{ $advantage->title }}</h3>
+                    <p class="text-gray-800 text-sm leading-relaxed">{{ $advantage->description }}</p>
+                </div>
+            @empty
+                <div class="bg-yellow-400 rounded-3xl p-8 shadow-md hover:shadow-lg transition">
+                    <div class="bg-white w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6 shadow-sm">
+                        <svg class="h-8 w-8 text-gray-700" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-xl mb-4 text-black">Bahan Ikan Tenggiri Premium</h3>
+                    <p class="text-gray-800 text-sm leading-relaxed">Dibuat dari 100% daging ikan tenggiri segar pilihan untuk menjamin tekstur yang lembut, kenyal, dan rasa gurih yang otentik tanpa bau amis.</p>
+                </div>
+
+                <div class="bg-yellow-400 rounded-3xl p-8 shadow-md hover:shadow-lg transition">
+                    <div class="bg-white w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6 shadow-sm">
+                        <svg class="h-8 w-8 text-gray-700" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-xl mb-4 text-black">Garansi Cuko Kental Asli</h3>
+                    <p class="text-gray-800 text-sm leading-relaxed">Diracik menggunakan resep rahasia dengan gula batok asli. Cuko yang pekat, perpaduan pas pedas, manis, dan asam yang menggugah selera.</p>
+                </div>
+
+                <div class="bg-yellow-400 rounded-3xl p-8 shadow-md hover:shadow-lg transition">
+                    <div class="bg-white w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6 shadow-sm">
+                        <svg class="h-8 w-8 text-gray-700" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-bold text-xl mb-4 text-black">Kemasan Vakum Aman</h3>
+                    <p class="text-gray-800 text-sm leading-relaxed">Dikemas dengan teknologi vakum kedap udara dan dibekukan. Menjamin pempek tetap fresh, higienis, dan sangat aman dikirim hingga ke luar pulau.</p>
+                </div>
+            @endforelse
         </div>
     </section>
 
@@ -199,40 +284,6 @@
                          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"></path></svg>
                      </span>
                  </button>
-            </div>
-        </div>
-    </section>
-
-<section id="keunggulan" class="container mx-auto px-6 py-16">
-        <div class="text-center mb-12">
-            <p class="text-[#cc0000] font-bold text-sm tracking-widest uppercase">Keunggulan</p>
-            <h2 class="text-3xl font-black mt-2 text-black">Mengapa Pempek Abdel Jadi Pilihan Utama?</h2>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            
-            <div class="bg-yellow-400 rounded-3xl p-8 shadow-md hover:shadow-lg transition">
-                <div class="bg-white w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6 shadow-sm">
-                    <img src="{{ asset('images/icon-pisau.png') }}" alt="Bahan Premium" class="w-8 h-8 object-contain">
-                </div>
-                <h3 class="font-bold text-xl mb-4 text-black">Bahan Ikan Tenggiri Premium</h3>
-                <p class="text-gray-800 text-sm leading-relaxed">Dibuat dari 100% daging ikan tenggiri segar pilihan untuk menjamin tekstur yang lembut, kenyal, dan rasa gurih yang otentik tanpa bau amis.</p>
-            </div>
-
-            <div class="bg-yellow-400 rounded-3xl p-8 shadow-md hover:shadow-lg transition">
-                <div class="bg-white w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6 shadow-sm">
-                    <img src="{{ asset('images/icon-sendok.png') }}" alt="Cuko Kental" class="w-8 h-8 object-contain">
-                </div>
-                <h3 class="font-bold text-xl mb-4 text-black">Garansi Cuko Kental Asli</h3>
-                <p class="text-gray-800 text-sm leading-relaxed">Diracik menggunakan resep rahasia dengan gula batok asli. Cuko yang pekat, perpaduan pas pedas, manis, dan asam yang menggugah selera.</p>
-            </div>
-
-            <div class="bg-yellow-400 rounded-3xl p-8 shadow-md hover:shadow-lg transition">
-                <div class="bg-white w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6 shadow-sm">
-                    <img src="{{ asset('images/icon-truk.png') }}" alt="Kemasan Aman" class="w-10 h-10 object-contain">
-                </div>
-                <h3 class="font-bold text-xl mb-4 text-black">Kemasan Vakum Aman</h3>
-                <p class="text-gray-800 text-sm leading-relaxed">Dikemas dengan teknologi vakum kedap udara dan dibekukan. Menjamin pempek tetap fresh, higienis, dan sangat aman dikirim hingga ke luar pulau.</p>
             </div>
         </div>
     </section>
