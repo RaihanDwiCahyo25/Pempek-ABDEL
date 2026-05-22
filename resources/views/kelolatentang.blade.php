@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="p-8">
-        <div class="bg-white rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.02)] border border-gray-100 p-8">
+        <div class="bg-white rounded-2xl border border-gray-100 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.02)] p-8">
             <div class="grid gap-8 lg:grid-cols-[360px_minmax(0,_1fr)]">
                 <div class="rounded-3xl border border-gray-200 bg-slate-50 p-6 shadow-sm">
                     <h3 class="text-lg font-bold text-gray-800 mb-4">Info Tentang Kami</h3>

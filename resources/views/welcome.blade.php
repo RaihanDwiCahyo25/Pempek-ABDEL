@@ -10,7 +10,7 @@
 
 <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
         <div class="flex items-center space-x-3">
-            <img src="{{ asset('images/logo-abdel.png') }}" alt="Icon Warung Abdel" class="h-10 object-contain">
+            <img src="{{ optional($homepageSetting)->logo_url ?? asset('images/logo-abdel.png') }}" alt="Icon Warung Abdel" class="h-10 object-contain">
             
             <img src="{{ asset('images/nama-warung.png') }}" alt="Teks Warung Abdel" class="h-6 object-contain">
         </div>
@@ -46,13 +46,13 @@
 
         <div class="md:w-1/2 flex flex-col items-center">
             <div class="w-[540px] h-[452.25px] rounded-full overflow-hidden mb-6">
-               <img src="{{ asset('images/pempek-logo.png') }}" alt="Mangkuk Pempek Campur" class="w-full h-full object-cover">
+               <img src="{{ optional($homepageSetting)->banner_url ?? asset('images/pempek-logo.png') }}" alt="Banner Pempek Abdel" class="w-full h-full object-cover">
             </div>
             
             <div class="flex space-x-8 items-center ml-12">
-                <img src="{{ asset('images/logo-halal.png') }}" alt="Halal Indonesia" class="h-16 object-contain">
+                <img src="{{ optional($homepageSetting)->halal_logo_url ?? asset('images/logo-halal.png') }}" alt="Halal Indonesia" class="h-16 object-contain">
                 
-                <img src="{{ asset('images/logo-bpom.png') }}" alt="Badan POM" class="h-16 object-contain">
+                <img src="{{ optional($homepageSetting)->bpom_logo_url ?? asset('images/logo-bpom.png') }}" alt="Badan POM" class="h-16 object-contain">
             </div>
         </div>
     </section>
@@ -274,8 +274,8 @@
         </div>
     </section>
 
-<div id="modal-campur" class="modal-overlay fixed inset-0 z-50 hidden flex items-center justify-center px-4 bg-black/60 transition-opacity">
-    <div class="bg-white rounded-2xl w-full max-w-md overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
+<div id="modal-campur" class="modal-overlay fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 ease-in-out flex items-center justify-center px-4 bg-black/60">
+    <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl relative flex flex-col max-h-[90vh] transform transition-transform duration-300 ease-in-out scale-95 modal-content">
         <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0 z-10">
             <h3 class="text-lg font-bold text-gray-900">Detail Pempek Campur Frozen</h3>
             <button onclick="tutupModal('modal-campur')" class="text-gray-900 hover:bg-gray-100 p-1 rounded-md transition">
@@ -297,8 +297,8 @@
     </div>
 </div>
 
-<div id="modal-adaan" class="modal-overlay fixed inset-0 z-50 hidden flex items-center justify-center px-4 bg-black/60 transition-opacity">
-    <div class="bg-white rounded-2xl w-full max-w-md overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
+<div id="modal-adaan" class="modal-overlay fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 ease-in-out flex items-center justify-center px-4 bg-black/60">
+    <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl relative flex flex-col max-h-[90vh] transform transition-transform duration-300 ease-in-out scale-95 modal-content">
         <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0 z-10">
             <h3 class="text-lg font-bold text-gray-900">Detail Pempek Adaan Frozen</h3>
             <button onclick="tutupModal('modal-adaan')" class="text-gray-900 hover:bg-gray-100 p-1 rounded-md transition">
@@ -320,8 +320,8 @@
     </div>
 </div>
 
-<div id="modal-kulit" class="modal-overlay fixed inset-0 z-50 hidden flex items-center justify-center px-4 bg-black/60 transition-opacity">
-    <div class="bg-white rounded-2xl w-full max-w-md overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
+<div id="modal-kulit" class="modal-overlay fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 ease-in-out flex items-center justify-center px-4 bg-black/60">
+    <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl relative flex flex-col max-h-[90vh] transform transition-transform duration-300 ease-in-out scale-95 modal-content">
         <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0 z-10">
             <h3 class="text-lg font-bold text-gray-900">Detail Pempek Kulit Frozen</h3>
             <button onclick="tutupModal('modal-kulit')" class="text-gray-900 hover:bg-gray-100 p-1 rounded-md transition">
@@ -343,8 +343,8 @@
     </div>
 </div>
 
-<div id="modal-lenjer" class="modal-overlay fixed inset-0 z-50 hidden flex items-center justify-center px-4 bg-black/60 transition-opacity">
-    <div class="bg-white rounded-2xl w-full max-w-md overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
+<div id="modal-lenjer" class="modal-overlay fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 ease-in-out flex items-center justify-center px-4 bg-black/60">
+    <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl relative flex flex-col max-h-[90vh] transform transition-transform duration-300 ease-in-out scale-95 modal-content">
         <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0 z-10">
             <h3 class="text-lg font-bold text-gray-900">Detail Pempek Lenjer Frozen</h3>
             <button onclick="tutupModal('modal-lenjer')" class="text-gray-900 hover:bg-gray-100 p-1 rounded-md transition">
@@ -366,8 +366,8 @@
     </div>
 </div>
 
-<div id="modal-kriting" class="modal-overlay fixed inset-0 z-50 hidden flex items-center justify-center px-4 bg-black/60 transition-opacity">
-    <div class="bg-white rounded-2xl w-full max-w-md overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
+<div id="modal-kriting" class="modal-overlay fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 ease-in-out flex items-center justify-center px-4 bg-black/60">
+    <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl relative flex flex-col max-h-[90vh] transform transition-transform duration-300 ease-in-out scale-95 modal-content">
         <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0 z-10">
             <h3 class="text-lg font-bold text-gray-900">Detail Pempek Kriting Frozen</h3>
             <button onclick="tutupModal('modal-kriting')" class="text-gray-900 hover:bg-gray-100 p-1 rounded-md transition">
@@ -389,8 +389,8 @@
     </div>
 </div>
 
-<div id="modal-telur" class="modal-overlay fixed inset-0 z-50 hidden flex items-center justify-center px-4 bg-black/60 transition-opacity">
-    <div class="bg-white rounded-2xl w-full max-w-md overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
+<div id="modal-telur" class="modal-overlay fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 ease-in-out flex items-center justify-center px-4 bg-black/60">
+    <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl relative flex flex-col max-h-[90vh] transform transition-transform duration-300 ease-in-out scale-95 modal-content">
         <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0 z-10">
             <h3 class="text-lg font-bold text-gray-900">Detail Pempek Telur Frozen</h3>
             <button onclick="tutupModal('modal-telur')" class="text-gray-900 hover:bg-gray-100 p-1 rounded-md transition">
@@ -463,7 +463,7 @@
         </div>
     </section>
         
-        <div class="text-center mb-12">
+        <!-- <div class="text-center mb-12">
             <p class="text-[#cc0000] font-bold text-sm tracking-widest uppercase">Testimoni</p>
             <h2 class="text-3xl font-black mt-2 text-black">Apa Kata Pelanggan Kami?</h2>
         </div>
@@ -495,7 +495,7 @@
                 <div class="w-[488.25px] h-[500.25px] rounded-3xl overflow-hidden shadow-xl">
                    <img src="{{ asset('images/mangkok-bawah.png') }}" alt="Gambar Mangkok Pempek" class="w-full h-full object-cover">
                 </div>
-            </div>
+            </div> -->
             
         </div>
     </section>
@@ -551,24 +551,115 @@
     </footer>
 
     <script>
-        // Fungsi buka modal
-        function bukaModal(idModal) {
-            document.getElementById(idModal).classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Menghilangkan scroll saat modal terbuka
-        }
+        // Modal Manager - Handle semua modal dengan konsisten
+        const ModalManager = {
+            currentModal: null,
 
-        // Fungsi tutup modal
-        function tutupModal(idModal) {
-            document.getElementById(idModal).classList.add('hidden');
-            document.body.style.overflow = 'auto'; // Mengembalikan scroll
-        }
+            // Buka modal dengan animasi smooth
+            open(modalId) {
+                const overlay = document.getElementById(modalId);
+                if (!overlay) return;
 
-        // Menutup modal jika klik area gelap/hitam di luar popup
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal-overlay')) {
-                event.target.classList.add('hidden');
-                document.body.style.overflow = 'auto';
+                // Tutup modal yang sedang aktif
+                if (this.currentModal && this.currentModal !== modalId) {
+                    this.close(this.currentModal);
+                }
+
+                const content = overlay.querySelector('.modal-content');
+                
+                // Reset state awal
+                overlay.classList.remove('hidden');
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+                
+                // Trigger reflow untuk memastikan animasi berjalan
+                void overlay.offsetHeight;
+                
+                // Animasi fade in
+                overlay.classList.remove('opacity-0');
+                
+                // Disable body scroll
+                document.body.style.overflow = 'hidden';
+                this.currentModal = modalId;
+
+                // Add escape key listener
+                document.addEventListener('keydown', this.handleEscapeKey);
+            },
+
+            // Tutup modal dengan animasi smooth
+            close(modalId) {
+                const overlay = document.getElementById(modalId);
+                if (!overlay) return;
+
+                const content = overlay.querySelector('.modal-content');
+                
+                // Mulai animasi fade out
+                overlay.classList.add('opacity-0');
+                content.classList.remove('scale-100');
+                content.classList.add('scale-95');
+                
+                // Tunggu animasi selesai baru sembunyikan
+                setTimeout(() => {
+                    overlay.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                    this.currentModal = null;
+                    
+                    // Remove escape key listener
+                    document.removeEventListener('keydown', this.handleEscapeKey);
+                }, 300);
+            },
+
+            // Handle escape key
+            handleEscapeKey: (event) => {
+                if (event.key === 'Escape' && ModalManager.currentModal) {
+                    ModalManager.close(ModalManager.currentModal);
+                }
+            },
+
+            // Init semua modal dengan click handlers
+            init() {
+                // Overlay click handler - close modal
+                document.querySelectorAll('.modal-overlay').forEach(overlay => {
+                    overlay.addEventListener('click', (e) => {
+                        if (e.target === overlay) {
+                            this.close(overlay.id);
+                        }
+                    });
+                });
+
+                // Prevent click propagation dari modal content
+                document.querySelectorAll('.modal-content').forEach(content => {
+                    content.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                    });
+                });
+
+                // Tombol close modal
+                document.querySelectorAll('[data-close-modal]').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const modalId = btn.closest('.modal-overlay').id;
+                        this.close(modalId);
+                    });
+                });
             }
+        };
+
+        // Helper functions untuk kompatibilitas dengan onclick handler
+        function bukaModal(idModal) {
+            ModalManager.open(idModal);
+        }
+
+        function tutupModal(idModal) {
+            ModalManager.close(idModal);
+        }
+
+        // Init semua modal saat DOM siap
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                ModalManager.init();
+            });
+        } else {
+            ModalManager.init();
         }
     </script>
 

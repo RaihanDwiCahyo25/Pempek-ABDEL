@@ -21,8 +21,10 @@ class HomepageSettingController extends Controller
     public function update(Request $request)
     {
         $validated = $request->validate([
-            'logo' => 'nullable|image|max:2048',
-            'banner' => 'nullable|image|max:4096',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'banner' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:4096',
+            'halal_logo' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'bpom_logo' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'slogan' => 'nullable|string|max:255',
             'description' => 'nullable|string|max:1000',
             'telepon' => 'nullable|string|max:50',
@@ -30,30 +32,29 @@ class HomepageSettingController extends Controller
             'alamat' => 'nullable|string|max:500',
             'url_sosmed' => 'nullable|url|max:255',
             'username_sosmed' => 'nullable|string|max:100',
-            'foto_sosmed' => 'nullable|image|max:2048',
+            'foto_sosmed' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
         ]);
 
         $setting = HomepageSetting::firstOrNew([]);
 
         if ($request->hasFile('logo')) {
-            if ($setting->logo_path) {
-                Storage::disk('public')->delete($setting->logo_path);
-            }
-            $setting->logo_path = $request->file('logo')->store('homepage', 'public');
+            $setting->logo_path = $this->storeImage($request->file('logo'), $setting->logo_path);
         }
 
         if ($request->hasFile('banner')) {
-            if ($setting->banner_path) {
-                Storage::disk('public')->delete($setting->banner_path);
-            }
-            $setting->banner_path = $request->file('banner')->store('homepage', 'public');
+            $setting->banner_path = $this->storeImage($request->file('banner'), $setting->banner_path);
+        }
+
+        if ($request->hasFile('halal_logo')) {
+            $setting->halal_logo_path = $this->storeImage($request->file('halal_logo'), $setting->halal_logo_path);
+        }
+
+        if ($request->hasFile('bpom_logo')) {
+            $setting->bpom_logo_path = $this->storeImage($request->file('bpom_logo'), $setting->bpom_logo_path);
         }
 
         if ($request->hasFile('foto_sosmed')) {
-            if ($setting->foto_sosmed_path) {
-                Storage::disk('public')->delete($setting->foto_sosmed_path);
-            }
-            $setting->foto_sosmed_path = $request->file('foto_sosmed')->store('homepage', 'public');
+            $setting->foto_sosmed_path = $this->storeImage($request->file('foto_sosmed'), $setting->foto_sosmed_path);
         }
 
         $setting->fill([
@@ -69,5 +70,14 @@ class HomepageSettingController extends Controller
         $setting->save();
 
         return redirect()->route('admin.beranda')->with('success', 'Perubahan beranda berhasil disimpan.');
+    }
+
+    private function storeImage($file, ?string $existingPath): string
+    {
+        if ($existingPath) {
+            Storage::disk('public')->delete($existingPath);
+        }
+
+        return $file->store('homepage', 'public');
     }
 }

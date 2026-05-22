@@ -44,8 +44,4 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('kelola-kemitraan', function () {
         return view('kelolakemitraan');
     })->name('kemitraan');
-
-    Route::get('kelola-testimoni', function () {
-        return view('kelolatestimoni');
-    })->name('testimoni');
 });
