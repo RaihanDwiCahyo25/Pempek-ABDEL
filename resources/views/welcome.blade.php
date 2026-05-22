@@ -170,247 +170,38 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                
-                <div class="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 flex flex-col">
-                   <div class="bg-gray-100 rounded-2xl h-56 mb-4 overflow-hidden cursor-pointer group" onclick="bukaModal('modal-campur')">
-                        <img src="{{ asset('images/pempek-frozen-campur.png') }}" alt="Pempek Campur" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                   </div>
-                    <div class="flex justify-between items-end flex-1">
-                        <div class="pr-3">
-                            <h3 class="font-bold text-lg text-black">Pempek Campur Frozen</h3>
-                            <p class="text-gray-500 text-xs mt-1 leading-tight">Isi lengkap: adaan, lenjer, kulit, kriting & telur</p>
+                @forelse($products as $product)
+                    <div class="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 flex flex-col">
+                        <div class="bg-gray-100 rounded-2xl h-56 mb-4 overflow-hidden">
+                            <img src="{{ $product->image_url }}" alt="{{ $product->nama_produk }}" class="w-full h-full object-cover">
                         </div>
-                        <a href="https://wa.me/6289527235298?text=Halo,%20saya%20mau%20pesan%20Pempek%20Campur%20Frozen." target="_blank" rel="noopener noreferrer" class="shrink-0 text-[#cc0000] hover:text-red-800 transition transform hover:scale-110">
-                            <img src="{{ asset('images/logo-wa.png') }}" alt="Pesan WA" class="w-10 h-10 object-contain">
-                        </a>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 flex flex-col">
-                    <div class="bg-gray-100 rounded-2xl h-56 mb-4 overflow-hidden cursor-pointer group" onclick="bukaModal('modal-adaan')">
-                        <img src="{{ asset('images/pempek-frozen-adaan.png') }}" alt="Pempek Adaan" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                    </div>
-                    <div class="flex justify-between items-end flex-1">
-                        <div class="pr-3">
-                            <h3 class="font-bold text-lg text-black">Pempek Adaan Frozen</h3>
-                            <p class="text-gray-500 text-xs mt-1 leading-tight">Bulat kenyal dari ikan tenggiri pilihan</p>
+                        <div class="flex justify-between items-end flex-1">
+                            <div class="pr-3">
+                                <h3 class="font-bold text-lg text-black">{{ $product->nama_produk }}</h3>
+                                <p class="text-gray-500 text-xs mt-1 leading-tight">{{ \Illuminate\Support\Str::limit($product->deskripsi_singkat, 80) }}</p>
+                            </div>
+                            <a href="https://wa.me/6289527235298?text={{ urlencode('Halo, saya mau pesan ' . $product->nama_produk) }}" target="_blank" rel="noopener noreferrer" class="shrink-0 text-[#cc0000] hover:text-red-800 transition transform hover:scale-110">
+                                <img src="{{ asset('images/logo-wa.png') }}" alt="Pesan WA" class="w-10 h-10 object-contain">
+                            </a>
                         </div>
-                        <a href="https://wa.me/6289527235298?text=Halo,%20saya%20mau%20pesan%20Pempek%20Adaan%20Frozen." target="_blank" rel="noopener noreferrer" class="shrink-0 text-[#cc0000] hover:text-red-800 transition transform hover:scale-110">
-                           <img src="{{ asset('images/logo-wa.png') }}" alt="Pesan WA" class="w-10 h-10 object-contain">
-                        </a>
                     </div>
-                </div>
-
-                <div class="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 flex flex-col">
-                    <div class="bg-gray-100 rounded-2xl h-56 mb-4 overflow-hidden cursor-pointer group" onclick="bukaModal('modal-kulit')">
-                        <img src="{{ asset('images/pempek-frozen-kulit.png') }}" alt="Pempek Kulit" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                @empty
+                    <div class="col-span-1 md:col-span-3 bg-white rounded-3xl p-10 text-center shadow-sm border border-gray-100">
+                        <p class="text-gray-700">Produk belum tersedia. Silakan tambahkan produk baru melalui halaman admin.</p>
                     </div>
-                    <div class="flex justify-between items-end flex-1">
-                        <div class="pr-3">
-                            <h3 class="font-bold text-lg text-black">Pempek Kulit Frozen</h3>
-                            <p class="text-gray-500 text-xs mt-1 leading-tight">Tekstur renyah, cocok digoreng kering</p>
-                        </div>
-                        <a href="https://wa.me/6289527235298?text=Halo,%20saya%20mau%20pesan%20Pempek%20Kulit%20Frozen." target="_blank" rel="noopener noreferrer" class="shrink-0 text-[#cc0000] hover:text-red-800 transition transform hover:scale-110">
-                           <img src="{{ asset('images/logo-wa.png') }}" alt="Pesan WA" class="w-10 h-10 object-contain">
-                        </a>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 flex flex-col">
-                    <div class="bg-gray-100 rounded-2xl h-56 mb-4 overflow-hidden cursor-pointer group" onclick="bukaModal('modal-lenjer')">
-                        <img src="{{ asset('images/pempek-frozen-lenjer.png') }}" alt="Pempek Lenjer Frozen" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                    </div>
-                    <div class="flex justify-between items-end flex-1">
-                        <div class="pr-3">
-                            <h3 class="font-bold text-lg text-black">Pempek Lenjer Frozen</h3>
-                            <p class="text-gray-500 text-xs mt-1 leading-tight">Klasik panjang, cocok untuk semua selera</p>
-                        </div>
-                        <a href="https://wa.me/6289527235298?text=Halo,%20saya%20mau%20pesan%20Pempek%20Lenjer%20Frozen." target="_blank" rel="noopener noreferrer" class="shrink-0 text-[#cc0000] hover:text-red-800 transition transform hover:scale-110">
-                            <img src="{{ asset('images/logo-wa.png') }}" alt="Pesan WA" class="w-10 h-10 object-contain">
-                        </a>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 flex flex-col">
-                    <div class="bg-gray-100 rounded-2xl h-56 mb-4 overflow-hidden cursor-pointer group" onclick="bukaModal('modal-kriting')">
-                        <img src="{{ asset('images/pempek-frozen-kriting.png') }}" alt="Pempek Kriting" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                    </div>
-                    <div class="flex justify-between items-end flex-1">
-                        <div class="pr-3">
-                            <h3 class="font-bold text-lg text-black">Pempek Kriting Frozen</h3>
-                            <p class="text-gray-500 text-xs mt-1 leading-tight">Bentuk unik, favorit anak-anak</p>
-                        </div>
-                        <a href="https://wa.me/6289527235298?text=Halo,%20saya%20mau%20pesan%20Pempek%20Kriting%20Frozen." target="_blank" rel="noopener noreferrer" class="shrink-0 text-[#cc0000] hover:text-red-800 transition transform hover:scale-110">
-                           <img src="{{ asset('images/logo-wa.png') }}" alt="Pesan WA" class="w-10 h-10 object-contain">
-                        </a>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition duration-300 border border-gray-100 flex flex-col">
-                    <div class="bg-gray-100 rounded-2xl h-56 mb-4 overflow-hidden cursor-pointer group" onclick="bukaModal('modal-telur')">
-                        <img src="{{ asset('images/pempek-frozen-telur.png') }}" alt="Pempek Telur" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                    </div>
-                    <div class="flex justify-between items-end flex-1">
-                        <div class="pr-3">
-                            <h3 class="font-bold text-lg text-black">Pempek Telur Frozen</h3>
-                            <p class="text-gray-500 text-xs mt-1 leading-tight">Isi telur penuh, ukuran besar</p>
-                        </div>
-                        <a href="https://wa.me/6289527235298?text=Halo,%20saya%20mau%20pesan%20Pempek%20Telur%20Frozen." target="_blank" rel="noopener noreferrer" class="shrink-0 text-[#cc0000] hover:text-red-800 transition transform hover:scale-110">
-                            <img src="{{ asset('images/logo-wa.png') }}" alt="Pesan WA" class="w-10 h-10 object-contain">
-                        </a>
-                    </div>
-                </div>
-
+                @endforelse
             </div>
             
             <div class="text-center mt-12">
-                 <button class="bg-[#cc0000] text-white pl-8 pr-2 py-2 rounded-full font-bold inline-flex items-center hover:bg-red-800 shadow-lg transition">
-                     Tampilkan lebih banyak 
-                     <span class="ml-4 bg-white text-[#cc0000] rounded-full w-10 h-10 flex items-center justify-center">
-                         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"></path></svg>
-                     </span>
-                 </button>
+                <a href="{{ route('katalog') }}" class="bg-[#cc0000] text-white pl-8 pr-2 py-2 rounded-full font-bold inline-flex items-center hover:bg-red-800 shadow-lg transition">
+                    Tampilkan lebih banyak
+                    <span class="ml-4 bg-white text-[#cc0000] rounded-full w-10 h-10 flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"></path></svg>
+                    </span>
+                </a>
             </div>
         </div>
     </section>
-
-<div id="modal-campur" class="modal-overlay fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 ease-in-out flex items-center justify-center px-4 bg-black/60">
-    <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl relative flex flex-col max-h-[90vh] transform transition-transform duration-300 ease-in-out scale-95 modal-content">
-        <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0 z-10">
-            <h3 class="text-lg font-bold text-gray-900">Detail Pempek Campur Frozen</h3>
-            <button onclick="tutupModal('modal-campur')" class="text-gray-900 hover:bg-gray-100 p-1 rounded-md transition">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-        </div>
-        <div class="px-6 py-5 space-y-4 overflow-y-auto">
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Harga (Rp) <span class="text-yellow-400">*</span></p><p class="text-gray-700">Rp30.000</p></div>
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Deskripsi <span class="text-yellow-400">*</span></p><p class="text-gray-600 text-sm leading-relaxed">Ragu mau pilih yang mana? Paket komplit ini adalah jawabannya! Terbuat dari 100% ikan tenggiri segar. Lengkap dengan siraman cuko hitam pekat khas Jambi.</p></div>
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Isi Kemasan <span class="text-yellow-400">*</span></p><p class="text-gray-600 text-sm">2 Adaan, 2 Lenjer, 2 Kulit, 2 Kriting, 2 Telur (Total 10 Pcs) + 1 Botol Cuko 250ml.</p></div>
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Berat Bersih <span class="text-yellow-400">*</span></p><p class="text-gray-600 text-sm">500 gram.</p></div>
-        </div>
-        <div class="px-6 py-4 border-t border-gray-100 bg-white sticky bottom-0">
-            <a href="https://wa.me/6289527235298?text=Halo%20Admin,%20saya%20mau%20pesan%20*Pempek%20Campur%20Frozen*" target="_blank" class="w-full flex items-center justify-center gap-2.5 bg-[#cc0000] text-white py-3 rounded-xl font-bold hover:bg-red-800 shadow-md transition text-base">
-                <span class="leading-none pt-[2px]">Pesan Sekarang</span>
-                <img src="{{ asset('images/logo-wa.png') }}" alt="Pesan WA" class="w-6 h-6 object-contain">
-            </a>
-        </div>
-    </div>
-</div>
-
-<div id="modal-adaan" class="modal-overlay fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 ease-in-out flex items-center justify-center px-4 bg-black/60">
-    <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl relative flex flex-col max-h-[90vh] transform transition-transform duration-300 ease-in-out scale-95 modal-content">
-        <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0 z-10">
-            <h3 class="text-lg font-bold text-gray-900">Detail Pempek Adaan Frozen</h3>
-            <button onclick="tutupModal('modal-adaan')" class="text-gray-900 hover:bg-gray-100 p-1 rounded-md transition">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-        </div>
-        <div class="px-6 py-5 space-y-4 overflow-y-auto">
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Harga (Rp) <span class="text-yellow-400">*</span></p><p class="text-gray-700">Rp25.000</p></div>
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Deskripsi <span class="text-yellow-400">*</span></p><p class="text-gray-600 text-sm leading-relaxed">Pempek adaan bentuk bulat yang gurih dan kenyal. Digoreng langsung lebih nikmat, terbuat dari daging ikan tenggiri dan santan pilihan.</p></div>
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Isi Kemasan <span class="text-yellow-400">*</span></p><p class="text-gray-600 text-sm">10 Pcs Pempek Adaan + 1 Botol Cuko 250ml.</p></div>
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Berat Bersih <span class="text-yellow-400">*</span></p><p class="text-gray-600 text-sm">500 gram.</p></div>
-        </div>
-        <div class="px-6 py-4 border-t border-gray-100 bg-white sticky bottom-0">
-            <a href="https://wa.me/6289527235298?text=Halo%20Admin,%20saya%20mau%20pesan%20*Pempek%20Adaan%20Frozen*" target="_blank" class="w-full flex items-center justify-center gap-2.5 bg-[#cc0000] text-white py-3 rounded-xl font-bold hover:bg-red-800 shadow-md transition text-base">
-                <span class="leading-none pt-[2px]">Pesan Sekarang</span>
-                <img src="{{ asset('images/logo-wa.png') }}" alt="Pesan WA" class="w-6 h-6 object-contain">
-            </a>
-        </div>
-    </div>
-</div>
-
-<div id="modal-kulit" class="modal-overlay fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 ease-in-out flex items-center justify-center px-4 bg-black/60">
-    <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl relative flex flex-col max-h-[90vh] transform transition-transform duration-300 ease-in-out scale-95 modal-content">
-        <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0 z-10">
-            <h3 class="text-lg font-bold text-gray-900">Detail Pempek Kulit Frozen</h3>
-            <button onclick="tutupModal('modal-kulit')" class="text-gray-900 hover:bg-gray-100 p-1 rounded-md transition">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-        </div>
-        <div class="px-6 py-5 space-y-4 overflow-y-auto">
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Harga (Rp) <span class="text-yellow-400">*</span></p><p class="text-gray-700">Rp25.000</p></div>
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Deskripsi <span class="text-yellow-400">*</span></p><p class="text-gray-600 text-sm leading-relaxed">Bagi pecinta tekstur crispy, pempek kulit ini juaranya! Makin garing saat digoreng kering, rasanya lebih *fishy* dan gurih khas ikan segar.</p></div>
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Isi Kemasan <span class="text-yellow-400">*</span></p><p class="text-gray-600 text-sm">10 Pcs Pempek Kulit + 1 Botol Cuko 250ml.</p></div>
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Berat Bersih <span class="text-yellow-400">*</span></p><p class="text-gray-600 text-sm">500 gram.</p></div>
-        </div>
-        <div class="px-6 py-4 border-t border-gray-100 bg-white sticky bottom-0">
-            <a href="https://wa.me/6289527235298?text=Halo%20Admin,%20saya%20mau%20pesan%20*Pempek%20Kulit%20Frozen*" target="_blank" class="w-full flex items-center justify-center gap-2.5 bg-[#cc0000] text-white py-3 rounded-xl font-bold hover:bg-red-800 shadow-md transition text-base">
-                <span class="leading-none pt-[2px]">Pesan Sekarang</span>
-                <img src="{{ asset('images/logo-wa.png') }}" alt="Pesan WA" class="w-6 h-6 object-contain">
-            </a>
-        </div>
-    </div>
-</div>
-
-<div id="modal-lenjer" class="modal-overlay fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 ease-in-out flex items-center justify-center px-4 bg-black/60">
-    <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl relative flex flex-col max-h-[90vh] transform transition-transform duration-300 ease-in-out scale-95 modal-content">
-        <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0 z-10">
-            <h3 class="text-lg font-bold text-gray-900">Detail Pempek Lenjer Frozen</h3>
-            <button onclick="tutupModal('modal-lenjer')" class="text-gray-900 hover:bg-gray-100 p-1 rounded-md transition">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-        </div>
-        <div class="px-6 py-5 space-y-4 overflow-y-auto">
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Harga (Rp) <span class="text-yellow-400">*</span></p><p class="text-gray-700">Rp25.000</p></div>
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Deskripsi <span class="text-yellow-400">*</span></p><p class="text-gray-600 text-sm leading-relaxed">Varian klasik yang bentuknya panjang. Potong-potong lalu goreng, nikmati tekstur kenyal asli ikan tenggiri yang menyatu dengan cuko pedas manis.</p></div>
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Isi Kemasan <span class="text-yellow-400">*</span></p><p class="text-gray-600 text-sm">10 Pcs Pempek Lenjer Potong + 1 Botol Cuko 250ml.</p></div>
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Berat Bersih <span class="text-yellow-400">*</span></p><p class="text-gray-600 text-sm">500 gram.</p></div>
-        </div>
-        <div class="px-6 py-4 border-t border-gray-100 bg-white sticky bottom-0">
-            <a href="https://wa.me/6289527235298?text=Halo%20Admin,%20saya%20mau%20pesan%20*Pempek%20Lenjer%20Frozen*" target="_blank" class="w-full flex items-center justify-center gap-2.5 bg-[#cc0000] text-white py-3 rounded-xl font-bold hover:bg-red-800 shadow-md transition text-base">
-                <span class="leading-none pt-[2px]">Pesan Sekarang</span>
-                <img src="{{ asset('images/logo-wa.png') }}" alt="Pesan WA" class="w-6 h-6 object-contain">
-            </a>
-        </div>
-    </div>
-</div>
-
-<div id="modal-kriting" class="modal-overlay fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 ease-in-out flex items-center justify-center px-4 bg-black/60">
-    <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl relative flex flex-col max-h-[90vh] transform transition-transform duration-300 ease-in-out scale-95 modal-content">
-        <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0 z-10">
-            <h3 class="text-lg font-bold text-gray-900">Detail Pempek Kriting Frozen</h3>
-            <button onclick="tutupModal('modal-kriting')" class="text-gray-900 hover:bg-gray-100 p-1 rounded-md transition">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-        </div>
-        <div class="px-6 py-5 space-y-4 overflow-y-auto">
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Harga (Rp) <span class="text-yellow-400">*</span></p><p class="text-gray-700">Rp25.000</p></div>
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Deskripsi <span class="text-yellow-400">*</span></p><p class="text-gray-600 text-sm leading-relaxed">Bentuknya yang keriting bergelombang bikin teksturnya unik, kenyal di dalam renyah di luar. Sangat digemari anak-anak dan keluarga.</p></div>
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Isi Kemasan <span class="text-yellow-400">*</span></p><p class="text-gray-600 text-sm">10 Pcs Pempek Kriting + 1 Botol Cuko 250ml.</p></div>
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Berat Bersih <span class="text-yellow-400">*</span></p><p class="text-gray-600 text-sm">500 gram.</p></div>
-        </div>
-        <div class="px-6 py-4 border-t border-gray-100 bg-white sticky bottom-0">
-            <a href="https://wa.me/6289527235298?text=Halo%20Admin,%20saya%20mau%20pesan%20*Pempek%20Kriting%20Frozen*" target="_blank" class="w-full flex items-center justify-center gap-2.5 bg-[#cc0000] text-white py-3 rounded-xl font-bold hover:bg-red-800 shadow-md transition text-base">
-                <span class="leading-none pt-[2px]">Pesan Sekarang</span>
-                <img src="{{ asset('images/logo-wa.png') }}" alt="Pesan WA" class="w-6 h-6 object-contain">
-            </a>
-        </div>
-    </div>
-</div>
-
-<div id="modal-telur" class="modal-overlay fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 ease-in-out flex items-center justify-center px-4 bg-black/60">
-    <div class="bg-white rounded-2xl w-full max-w-md shadow-2xl relative flex flex-col max-h-[90vh] transform transition-transform duration-300 ease-in-out scale-95 modal-content">
-        <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0 z-10">
-            <h3 class="text-lg font-bold text-gray-900">Detail Pempek Telur Frozen</h3>
-            <button onclick="tutupModal('modal-telur')" class="text-gray-900 hover:bg-gray-100 p-1 rounded-md transition">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-        </div>
-        <div class="px-6 py-5 space-y-4 overflow-y-auto">
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Harga (Rp) <span class="text-yellow-400">*</span></p><p class="text-gray-700">Rp25.000</p></div>
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Deskripsi <span class="text-yellow-400">*</span></p><p class="text-gray-600 text-sm leading-relaxed">Pempek selam ukuran kecil dengan isian telur utuh yang gurih. Perpaduan adonan ikan tenggiri dan gurihnya telur bikin nagih!</p></div>
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Isi Kemasan <span class="text-yellow-400">*</span></p><p class="text-gray-600 text-sm">10 Pcs Pempek Telur + 1 Botol Cuko 250ml.</p></div>
-            <div><p class="font-bold text-sm text-gray-900 mb-1">Berat Bersih <span class="text-yellow-400">*</span></p><p class="text-gray-600 text-sm">500 gram.</p></div>
-        </div>
-        <div class="px-6 py-4 border-t border-gray-100 bg-white sticky bottom-0">
-            <a href="https://wa.me/6289527235298?text=Halo%20Admin,%20saya%20mau%20pesan%20*Pempek%20Telur%20Frozen*" target="_blank" class="w-full flex items-center justify-center gap-2.5 bg-[#cc0000] text-white py-3 rounded-xl font-bold hover:bg-red-800 shadow-md transition text-base">
-                <span class="leading-none pt-[2px]">Pesan Sekarang</span>
-                <img src="{{ asset('images/logo-wa.png') }}" alt="Pesan WA" class="w-6 h-6 object-contain">
-            </a>
-        </div>
-    </div>
-</div>
 
     <section id="jangkauan" class="bg-white py-20 border-t border-gray-100 overflow-hidden">
         <div class="container mx-auto px-6 max-w-6xl">
