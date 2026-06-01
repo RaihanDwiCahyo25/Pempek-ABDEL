@@ -13,19 +13,42 @@ use App\Models\HomepageSetting;
 use App\Models\Product;
 use App\Models\StoreInfo;
 
-// Mode Frontend Sementara (Tanpa Controller & Middleware Auth)
+// ==========================================
+// Mode Frontend Sementara
+// ==========================================
 
+// 1. Halaman Beranda
 Route::get('/', function () {
     $heroSection = HeroSection::active()->first();
     $homepageSetting = HomepageSetting::first();
     $storeInfos = StoreInfo::ordered()->get();
-    $advantages = Advantage::active()->ordered()->get();
-    $products = Product::active()->ordered()->take(6)->get();
+    
+    // Ubah 'welcome' menjadi 'beranda' agar sesuai dengan nama file beranda.blade.php
+    return view('beranda', compact('heroSection', 'homepageSetting', 'storeInfos'));
+})->name('beranda');
 
-    return view('welcome', compact('heroSection', 'homepageSetting', 'storeInfos', 'advantages', 'products'));
-});
-
+// 2. Halaman Katalog (Sudah menggunakan Controller)
 Route::get('/katalog', [CatalogController::class, 'index'])->name('katalog');
+
+// 3. Halaman Tentang Kami
+Route::get('/tentang-kami', function () {
+    $homepageSetting = HomepageSetting::first();
+    // $advantages dihapus dari sini
+    return view('tentang', compact('homepageSetting'));
+})->name('tentang');
+
+// 4. Halaman Kemitraan & Info
+Route::get('/kemitraan', function () {
+    $homepageSetting = HomepageSetting::first();
+    $advantages = Advantage::active()->ordered()->get(); // Pindahkan ke sini
+    
+    return view('kemitraan', compact('homepageSetting', 'advantages'));
+})->name('kemitraan');
+
+
+// ==========================================
+// Mode Backend / Admin
+// ==========================================
 
 Route::get('/admin', function () {
     return view('login'); 
@@ -35,6 +58,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('hero-sections', HeroSectionController::class);
     Route::resource('store-infos', StoreInfoController::class);
     Route::resource('advantages', AdvantageController::class);
+    
     Route::get('kelola-beranda', [HomepageSettingController::class, 'edit'])->name('beranda');
     Route::post('kelola-beranda', [HomepageSettingController::class, 'update'])->name('beranda.save');
 
