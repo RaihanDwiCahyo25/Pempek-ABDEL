@@ -6,12 +6,14 @@ use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\Admin\HomepageSettingController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\StoreInfoController;
+use App\Http\Controllers\Admin\TentangKamiController;
 use App\Http\Controllers\CatalogController;
 use App\Models\Advantage;
 use App\Models\HeroSection;
 use App\Models\HomepageSetting;
 use App\Models\Product;
 use App\Models\StoreInfo;
+use App\Models\TentangKami;
 
 // ==========================================
 // Mode Frontend Sementara
@@ -32,9 +34,9 @@ Route::get('/katalog', [CatalogController::class, 'index'])->name('katalog');
 
 // 3. Halaman Tentang Kami
 Route::get('/tentang-kami', function () {
+    $tentangKami = TentangKami::first();
     $homepageSetting = HomepageSetting::first();
-    // $advantages dihapus dari sini
-    return view('tentang', compact('homepageSetting'));
+    return view('tentang', compact('tentangKami', 'homepageSetting'));
 })->name('tentang');
 
 // 4. Halaman Kemitraan & Info
@@ -65,9 +67,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('kelola-katalog', [ProductController::class, 'index'])->name('katalog');
     Route::resource('products', ProductController::class)->except(['show']);
 
-    Route::get('kelola-tentang', function () {
-        return view('kelolatentang');
-    })->name('tentang');
+    Route::get('kelola-tentang', [TentangKamiController::class, 'edit'])->name('tentang');
+    Route::post('kelola-tentang', [TentangKamiController::class, 'update'])->name('tentang.save');
+    Route::delete('kelola-tentang/image', [TentangKamiController::class, 'deleteImage'])->name('tentang.deleteImage');
 
     Route::get('kelola-kemitraan', function () {
         return view('kelolakemitraan');

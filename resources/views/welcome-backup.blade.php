@@ -45,7 +45,7 @@
         </div>
 
         <div class="md:w-1/2 flex flex-col items-center">
-            <div class="w-[540px] h-[452.25px] rounded-full overflow-hidden mb-6">
+            <div class="w-[520px] h-[420px] min-w-[520px] rounded-[50%] overflow-hidden mb-6 shadow-xl bg-white">
                <img src="{{ optional($homepageSetting)->banner_url ?? asset('images/pempek-logo.png') }}" alt="Banner Pempek Abdel" class="w-full h-full object-cover">
             </div>
             

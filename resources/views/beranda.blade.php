@@ -3,15 +3,13 @@
 @section('title', 'Beranda - Warung Abdel')
 
 @section('content')
-    <section class="container mx-auto px-6 py-16 flex flex-col-reverse md:flex-row items-center justify-between">
+    <section class="container mx-auto px-6 py-16 flex flex-col-reverse md:flex-row items-center justify-between md:gap-10">
         <div class="md:w-1/2 mt-10 md:mt-0">
             <h1 class="text-5xl md:text-6xl font-black leading-tight mb-6 text-black">
-                Asli Jambi<br>
-                Sertifikasi BPOM<br>
-                <span class="text-[#cc0000]">Halal</span>
+                {!! optional($homepageSetting)->slogan ? nl2br(e($homepageSetting->slogan)) : 'Asli Jambi<br>Sertifikasi BPOM<br><span class="text-[#cc0000]">Halal</span>' !!}
             </h1>
             <p class="text-gray-800 mb-8 max-w-md text-sm md:text-base leading-relaxed">
-                Nikmati kelezatan Pempek Abdel dengan cuko kental khasnya. Dikemas vakum, tahan lama, dan siap kirim aman ke seluruh kota di Indonesia.
+                {!! optional($homepageSetting)->description ? nl2br(e($homepageSetting->description)) : 'Nikmati kelezatan Pempek Abdel dengan cuko kental khasnya. Dikemas vakum, tahan lama, dan siap kirim aman ke seluruh kota di Indonesia.' !!}
             </p>
             
             <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 items-center mb-10">
@@ -36,8 +34,9 @@
         </div>
 
         <div class="md:w-1/2 flex justify-end md:justify-center items-center">
-            <div class="w-[540.35px] h-[452.25px] flex items-center justify-center">
-               <img src="{{ optional($homepageSetting)->banner_url ?? asset('images/pempek-logo.png') }}" alt="Pempek Abdel" class="w-full h-full object-contain">
+            <!-- Bingkai Banner - Ukuran statis tetap 520x420px -->
+            <div style="width: 520px; height: 420px;" class="flex items-center justify-center rounded-[50%] overflow-hidden shadow-xl bg-white flex-shrink-0">
+               <img src="{{ optional($homepageSetting)->banner_url ?? asset('images/pempek-logo.png') }}" alt="Pempek Abdel" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
         </div>
         </div>

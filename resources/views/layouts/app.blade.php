@@ -13,7 +13,9 @@
     <nav class="container mx-auto px-6 py-6 flex justify-between items-center">
         <!-- Kiri: Logo dan Teks Warung Abdel -->
         <a href="{{ route('beranda') }}" class="flex items-center space-x-3">
-            <img src="{{ optional($homepageSetting ?? null)->logo_url ?? asset('images/logo-abdel.png') }}" alt="Logo Warung Abdel" class="h-14 object-contain">
+            <div class="flex items-center justify-center h-[56px] w-[56px] min-w-[56px] overflow-hidden rounded-lg bg-white">
+                <img src="{{ optional($homepageSetting ?? null)->logo_url ?? asset('images/logo-abdel.png') }}" alt="Logo Warung Abdel" class="max-h-full max-w-full object-contain">
+            </div>
             <div class="font-black text-2xl tracking-wide uppercase">
                 <span class="text-yellow-400">Warung</span> <span class="text-[#cc0000]">Abdel</span>
             </div>
@@ -39,7 +41,9 @@
             <!-- Kolom 1: Logo, Deskripsi & Sosial Media -->
             <div class="col-span-1 pr-4">
                 <div class="flex items-center space-x-3 mb-6">
-                    <img src="{{ optional($homepageSetting ?? null)->logo_url ?? asset('images/logo-abdel.png') }}" alt="Logo" class="h-16 object-contain">
+                    <div class="flex items-center justify-center h-[64px] w-[64px] min-w-[64px] overflow-hidden rounded-lg bg-white">
+                        <img src="{{ optional($homepageSetting ?? null)->logo_url ?? asset('images/logo-abdel.png') }}" alt="Logo" class="max-h-full max-w-full object-contain">
+                    </div>
                     <div class="font-black text-3xl leading-none uppercase">
                         <span class="text-yellow-400 block">Warung</span>
                         <span class="text-[#cc0000] block mt-1">Abdel</span>
