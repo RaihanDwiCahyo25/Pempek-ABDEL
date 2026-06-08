@@ -20,8 +20,8 @@
                 </div>
 
                 <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-3 gap-3">
-                    <a href="{{ route('admin.products.create') }}" class="inline-flex items-center px-5 py-3 bg-red-700 text-white rounded-2xl font-semibold hover:bg-red-800 transition text-sm">Tambah Produk</a>
-                    <a href="{{ route('admin.products.index') }}" class="inline-flex items-center px-5 py-3 border border-gray-200 rounded-2xl text-gray-700 hover:bg-gray-50 transition text-sm">Segarkan</a>
+                    <a href="{{ route('admin.products.create') }}" class="inline-flex items-center px-6 py-3 min-w-[140px] bg-red-700 text-white rounded-2xl font-semibold hover:bg-red-800 transition text-sm">Tambah Produk</a>
+                    <a href="{{ route('admin.products.index') }}" class="inline-flex items-center px-6 py-3 min-w-[140px] border border-gray-200 rounded-2xl text-gray-700 hover:bg-gray-50 transition text-sm">Segarkan</a>
                 </div>
             </div>
 
@@ -56,7 +56,7 @@
                         @forelse($products as $product)
                             <tr class="border-t border-gray-200 hover:bg-gray-50 transition">
                                 <td class="py-4 px-6">
-                                    <div class="w-20 h-14 rounded-xl overflow-hidden bg-gray-100 flex items-center justify-center">
+                                    <div class="w-16 h-12 md:w-20 md:h-14 rounded-xl overflow-hidden bg-gray-100 flex items-center justify-center">
                                         <img src="{{ $product->image_url }}" alt="{{ $product->nama_produk }}" class="w-full h-full object-cover" />
                                     </div>
                                 </td>

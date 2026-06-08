@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdvantageController;
+use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\Admin\HomepageSettingController;
 use App\Http\Controllers\Admin\ProductController;
@@ -52,11 +53,13 @@ Route::get('/kemitraan', function () {
 // Mode Backend / Admin
 // ==========================================
 
-Route::get('/admin', function () {
-    return view('login'); 
-})->name('login');
+Route::get('/admin', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/admin/login', [AuthController::class, 'login'])->name('login.authenticate');
+Route::post('/admin/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+
     Route::resource('hero-sections', HeroSectionController::class);
     Route::resource('store-infos', StoreInfoController::class);
     Route::resource('advantages', AdvantageController::class);
@@ -71,7 +74,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('kelola-tentang', [TentangKamiController::class, 'update'])->name('tentang.save');
     Route::delete('kelola-tentang/image', [TentangKamiController::class, 'deleteImage'])->name('tentang.deleteImage');
 
-    Route::get('kelola-kemitraan', function () {
-        return view('kelolakemitraan');
-    })->name('kemitraan');
+    Route::get('kelola-kemitraan', [HomepageSettingController::class, 'editKemitraan'])->name('kemitraan');
+    Route::post('kelola-kemitraan', [HomepageSettingController::class, 'updateKemitraan'])->name('kemitraan.save');
 });

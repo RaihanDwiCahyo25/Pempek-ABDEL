@@ -41,8 +41,8 @@
         
         <header class="p-8 flex justify-between items-start">
             <div>
-                <h2 class="text-2xl font-bold mb-1">Pencatatan Transaksi</h2>
-                <p class="text-gray-500 text-sm">Toko Warung Abdel</p>
+                <h2 class="text-2xl font-bold mb-1">Login Admin</h2>
+                <p class="text-gray-500 text-sm">Silakan masuk untuk mengelola panel admin.</p>
             </div>
             <div class="flex items-center space-x-4">
                 <button class="w-10 h-10 bg-white border border-gray-200 rounded-xl flex items-center justify-center text-red-600 shadow-sm hover:bg-gray-50">
@@ -62,28 +62,40 @@
                 </div>
                 
                 <div class="p-8">
-                    <form action="#" method="POST">
+                    <form action="{{ route('login.authenticate') }}" method="POST">
+                        @csrf
+
+                        @if ($errors->any())
+                            <div class="mb-5 rounded-lg bg-red-50 border border-red-100 p-4 text-sm text-red-700">
+                                <ul class="list-disc list-inside space-y-1">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                         <div class="mb-5">
                             <label class="block text-sm text-gray-700 mb-2">Username <span class="text-yellow-400">*</span></label>
-                            <input type="text" placeholder="Masukkan username" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition">
+                            <input name="username" type="text" value="{{ old('username') }}" placeholder="Masukkan username" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition">
                         </div>
 
                         <div class="mb-5">
                             <label class="block text-sm text-gray-700 mb-2">Password <span class="text-yellow-400">*</span></label>
-                            <input type="password" placeholder="Masukkan password" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition">
+                            <input name="password" type="password" placeholder="Masukkan password" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition">
                         </div>
 
                         <div class="mb-6 flex items-center">
                             <input type="checkbox" checked class="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500 accent-gray-300">
-                            <label class="ml-2 text-sm text-gray-700">Ingat saya <span class="text-yellow-400">*</span></label>
+                            <label class="ml-2 text-sm text-gray-700">Ingat saya</label>
                         </div>
 
-                        <button type="button" class="w-full sm:w-1/2 bg-red-700 text-white py-2.5 rounded-lg font-bold hover:bg-red-800 transition">
+                        <button type="submit" class="w-full sm:w-1/2 bg-red-700 text-white py-2.5 rounded-lg font-bold hover:bg-red-800 transition">
                             Login
                         </button>
 
                         <div class="mt-4">
-                            <a href="#" class="text-sm text-gray-700 hover:text-red-600 transition">Lupa kata sandi? <span class="text-yellow-400">*</span></a>
+                            <a href="#" class="text-sm text-gray-700 hover:text-red-600 transition">Lupa kata sandi?</a>
                         </div>
                     </form>
                 </div>

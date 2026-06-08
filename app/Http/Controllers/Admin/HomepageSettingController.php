@@ -72,12 +72,66 @@ class HomepageSettingController extends Controller
         return redirect()->route('admin.beranda')->with('success', 'Perubahan beranda berhasil disimpan.');
     }
 
-    private function storeImage($file, ?string $existingPath): string
+    public function editKemitraan()
+    {
+        $setting = HomepageSetting::first();
+
+        return view('kelolakemitraan', [
+            'setting' => $setting,
+        ]);
+    }
+
+    public function updateKemitraan(Request $request)
+    {
+        $validated = $request->validate([
+            'kemitraan_online_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:4096',
+            'kemitraan_offline_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:4096',
+            'kemitraan_reseller_map_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:4096',
+            'kemitraan_banner_image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:4096',
+            'kemitraan_online_description' => 'nullable|string|max:1000',
+            'kemitraan_offline_description' => 'nullable|string|max:1000',
+            'kemitraan_reseller_description' => 'nullable|string|max:1000',
+            'kemitraan_banner_title' => 'nullable|string|max:255',
+            'kemitraan_banner_description' => 'nullable|string|max:1000',
+        ]);
+
+        $setting = HomepageSetting::firstOrNew([]);
+
+        if ($request->hasFile('kemitraan_online_image')) {
+            $setting->kemitraan_online_image_path = $this->storeImage($request->file('kemitraan_online_image'), $setting->kemitraan_online_image_path, 'homepage/kemitraan');
+        }
+
+        if ($request->hasFile('kemitraan_offline_image')) {
+            $setting->kemitraan_offline_image_path = $this->storeImage($request->file('kemitraan_offline_image'), $setting->kemitraan_offline_image_path, 'homepage/kemitraan');
+        }
+
+        if ($request->hasFile('kemitraan_reseller_map_image')) {
+            $setting->kemitraan_reseller_map_image_path = $this->storeImage($request->file('kemitraan_reseller_map_image'), $setting->kemitraan_reseller_map_image_path, 'homepage/kemitraan');
+        }
+
+        if ($request->hasFile('kemitraan_banner_image')) {
+            $setting->kemitraan_banner_image_path = $this->storeImage($request->file('kemitraan_banner_image'), $setting->kemitraan_banner_image_path, 'homepage/kemitraan');
+        }
+
+        $setting->fill([
+            'kemitraan_online_description' => $validated['kemitraan_online_description'] ?? $setting->kemitraan_online_description,
+            'kemitraan_offline_description' => $validated['kemitraan_offline_description'] ?? $setting->kemitraan_offline_description,
+            'kemitraan_reseller_description' => $validated['kemitraan_reseller_description'] ?? $setting->kemitraan_reseller_description,
+            'kemitraan_banner_title' => $validated['kemitraan_banner_title'] ?? $setting->kemitraan_banner_title,
+            'kemitraan_banner_description' => $validated['kemitraan_banner_description'] ?? $setting->kemitraan_banner_description,
+        ]);
+
+        $setting->save();
+
+        return redirect()->route('admin.kemitraan')->with('success', 'Perubahan kemitraan berhasil disimpan.');
+    }
+
+    private function storeImage($file, ?string $existingPath, string $folder = 'homepage'): string
     {
         if ($existingPath) {
             Storage::disk('public')->delete($existingPath);
         }
 
-        return $file->store('homepage', 'public');
+        return $file->store($folder, 'public');
     }
 }

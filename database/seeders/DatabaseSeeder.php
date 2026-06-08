@@ -15,8 +15,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Admin login untuk panel admin
+        User::factory()->create([
+            'name' => 'admin',
+            'email' => 'admin@pempek.test',
+            'password' => 'pempekabdel',
+        ]);
 
+        // Akun tambahan untuk development
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
