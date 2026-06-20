@@ -41,23 +41,14 @@
                     <span>Kelola Tentang Kami</span>
                 </a>
 
-                <a href="{{ route('admin.kemitraan') }}" class="flex items-center space-x-4 px-4 py-3 {{ request()->routeIs('admin.kemitraan') ? 'bg-slate-50 text-red-600 rounded-xl font-bold' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900 rounded-xl font-medium' }} transition">
+                {{-- <a href="{{ route('admin.kemitraan') }}" class="flex items-center space-x-4 px-4 py-3 {{ request()->routeIs('admin.kemitraan') ? 'bg-slate-50 text-red-600 rounded-xl font-bold' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900 rounded-xl font-medium' }} transition">
                     <svg class="w-6 h-6 {{ request()->routeIs('admin.kemitraan') ? 'text-red-600' : 'text-gray-600' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     <span>Kelola Kemitraan & Info</span>
-                </a>
+                </a> --}}
             </nav>
         </div>
 
         <div class="p-6 border-t border-gray-100 flex flex-col space-y-6">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-3 text-gray-700 font-medium">
-                    <img src="{{ asset('images/lamp-pendant.png') }}" alt="Ikon Mode" class="w-5 h-5 object-contain">
-                    <span>Mode Tampilan</span>
-                </div>
-                <button class="bg-gray-100 p-2 rounded-lg text-gray-600 hover:bg-gray-200 transition">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-                </button>
-            </div>
             <form action="{{ route('logout') }}" method="POST" class="w-full">
                 @csrf
                 <button type="submit" class="w-full flex items-center space-x-3 font-medium text-yellow-500 hover:text-yellow-600 transition">

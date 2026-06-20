@@ -55,9 +55,9 @@
                     </div>
 
                     <div class="flex flex-col text-center">
-                        <div class="opacity-100 transition-opacity">
+                        <div class="opacity-100 transition-opacity" style="margin-bottom: 200px;">
                             <!-- <h3 class="text-xl font-black text-[#cc0000] leading-tight mb-3">KUNJUNGI<br>WARUNG<br>(OFFLINE)</h3> -->
-                            <p class="text-gray-800 text-sm leading-relaxed mb-6 px-2">Sedang berada di Jambi? Mampir langsung ke Warung Pempek Abdel untuk menikmati cuko kental otentik dan pempek segar yang baru diangkat dari wajan.</p>
+                            <p class="text-gray-800 text-sm leading-relaxed mb-6 px-2"></p>
                         </div>
                         <div class="h-48 mt-auto overflow-hidden rounded-xl md:mt-2">
                             <img src="{{ optional($homepageSetting)->kemitraan_offline_image_url ?? asset('images/toko-abdel.png') }}" alt="Warung Abdel" class="w-full h-full object-cover">
