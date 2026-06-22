@@ -28,6 +28,9 @@ class TentangKamiController extends Controller
             'section3_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'meta_title' => 'nullable|string|max:60',
             'meta_description' => 'nullable|string|max:160',
+            'delete_section1_image' => 'nullable|in:0,1',
+            'delete_section2_image' => 'nullable|in:0,1',
+            'delete_section3_image' => 'nullable|in:0,1',
         ]);
 
         $tentangKami = TentangKami::first() ?? new TentangKami();
@@ -41,11 +44,20 @@ class TentangKamiController extends Controller
         $tentangKami->meta_title = $validated['meta_title'] ?? null;
         $tentangKami->meta_description = $validated['meta_description'] ?? null;
 
-        // Handle image uploads
+        // Handle image uploads and deletes
         foreach (['section1', 'section2', 'section3'] as $section) {
             $imageField = $section . '_image';
-            $contentKey = $section . '_content';
+            $deleteField = 'delete_' . $section . '_image';
 
+            // Handle delete flag
+            if ($request->input($deleteField) == '1') {
+                if ($tentangKami->$imageField && Storage::exists('public/' . $tentangKami->$imageField)) {
+                    Storage::delete('public/' . $tentangKami->$imageField);
+                }
+                $tentangKami->$imageField = null;
+            }
+
+            // Handle new image upload
             if ($request->hasFile($imageField)) {
                 // Delete old image if exists
                 if ($tentangKami->$imageField && Storage::exists('public/' . $tentangKami->$imageField)) {

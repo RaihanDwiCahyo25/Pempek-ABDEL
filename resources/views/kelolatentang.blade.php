@@ -28,6 +28,11 @@
             <form action="{{ route('admin.tentang.save') }}" method="POST" enctype="multipart/form-data" class="space-y-8">
                 @csrf
 
+                <!-- Hidden inputs untuk delete fields -->
+                <input type="hidden" id="delete_section1_image" name="delete_section1_image" value="0">
+                <input type="hidden" id="delete_section2_image" name="delete_section2_image" value="0">
+                <input type="hidden" id="delete_section3_image" name="delete_section3_image" value="0">
+
                 <!-- CARD: Header Section -->
                 <div class="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
                     <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -246,6 +251,14 @@
                         preview.innerHTML = `<img src="${e.target.result}" alt="Preview" class="w-full h-full object-cover">`;
                     };
                     reader.readAsDataURL(file);
+                    
+                    // Reset delete flag jika user upload file baru
+                    const fieldName = input.name;
+                    const deleteFieldName = 'delete_' + fieldName;
+                    const deleteInput = document.getElementById(deleteFieldName);
+                    if (deleteInput) {
+                        deleteInput.value = '0';
+                    }
                 }
             });
         });
@@ -253,8 +266,16 @@
         // Delete Image Function
         function deleteImage(field) {
             if (confirm('Apakah Anda yakin ingin menghapus gambar ini?')) {
-                // Implement delete via AJAX if needed
-                alert('Fungsi hapus akan dijalankan saat form disimpan');
+                const deleteInput = document.getElementById('delete_' + field);
+                if (deleteInput) {
+                    deleteInput.value = '1';
+                    // Update preview
+                    const previewId = field.replace('_image', '_preview');
+                    const preview = document.getElementById(previewId);
+                    if (preview) {
+                        preview.innerHTML = '<span class="text-sm text-gray-400">Gambar akan dihapus setelah disimpan</span>';
+                    }
+                }
             }
         }
     </script>

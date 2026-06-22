@@ -35,7 +35,7 @@
                                     <p class="text-lg font-bold text-gray-900">Rp{{ number_format($product->harga, 0, ',', '.') }}</p>
                                     <p class="text-xs text-gray-500">Ready Stock / Kirim Cepat</p>
                                 </div>
-                                <a href="https://wa.me/6289527235298?text={{ urlencode('Halo, saya mau pesan ' . $product->nama_produk) }}" target="_blank" class="inline-flex items-center justify-center rounded-full bg-[#cc0000] px-4 py-2 text-sm font-bold text-white hover:bg-red-800 transition">Pesan</a>
+                                <a href="https://wa.me/628117408504?text={{ urlencode('Halo, saya mau pesan ' . $product->nama_produk) }}" target="_blank" class="inline-flex items-center justify-center rounded-full bg-[#cc0000] px-4 py-2 text-sm font-bold text-white hover:bg-red-800 transition">Pesan</a>
                             </div>
                         </div>
                     </div>

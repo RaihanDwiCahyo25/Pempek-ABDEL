@@ -90,7 +90,7 @@
                 <h2 class="text-3xl font-black mb-4">{{ optional($homepageSetting)->kemitraan_banner_title ?? 'Tertarik Menjadi Reseller Kami?' }}</h2>
                 <p class="mb-8 text-red-100">{!! optional($homepageSetting)->kemitraan_banner_description ? nl2br(e($homepageSetting->kemitraan_banner_description)) : 'Bergabunglah dengan puluhan mitra kami di Solo, Semarang, Jogja, Jakarta, dan Bandung. Dapatkan harga khusus untuk pembelian partai besar dan raih untung bersama Pempek Abdel.' !!}</p>
                 <div>
-                    <a href="https://wa.me/6289527235298?text=Halo%20Admin,%20saya%20mau%20daftar%20jadi%20reseller" target="_blank" class="bg-yellow-400 text-gray-900 px-8 py-3 rounded-full font-bold hover:bg-yellow-500 transition shadow-md inline-block">Daftar Jadi Reseller Via WA</a>
+                    <a href="https://wa.me/628117408504?text=Halo%20Admin,%20saya%20mau%20daftar%20jadi%20reseller" target="_blank" class="bg-yellow-400 text-gray-900 px-8 py-3 rounded-full font-bold hover:bg-yellow-500 transition shadow-md inline-block">Daftar Jadi Reseller Via WA</a>
                 </div>
             </div>
         </div>
