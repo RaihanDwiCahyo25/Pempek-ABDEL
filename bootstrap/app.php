@@ -11,7 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->trustProxies(at: '*');
+        
+        // Add ngrok CORS headers middleware
+        $middleware->append(\App\Http\Middleware\NgrokCorsHeaders::class);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

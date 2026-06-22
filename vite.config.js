@@ -14,5 +14,10 @@ export default defineConfig({
         watch: {
             ignored: ['**/storage/framework/views/**'],
         },
+        hmr: {
+            host: '087c-140-213-200-118.ngrok-free.app',
+            protocol: 'https',
+            port: 443,
+        }
     },
 });

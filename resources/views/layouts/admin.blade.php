@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - @yield('title', 'Dashboard')</title>
     @vite('resources/css/app.css')
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="font-sans antialiased bg-gray-50 text-gray-800 flex min-h-screen">
 
@@ -67,16 +68,12 @@
             </div>
 
             <div class="flex items-center space-x-3">
-                <button class="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center text-red-600 hover:bg-gray-200 transition relative">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-                </button>
-
-                <div class="bg-gray-100 h-12 px-5 flex flex-col justify-center rounded-2xl text-left">
+                <!-- <div class="bg-gray-100 h-12 px-5 flex flex-col justify-center rounded-2xl text-left">
                     <p class="text-sm font-bold text-gray-800 leading-tight">Waktu</p>
                     <p class="text-xs text-gray-500 leading-tight mt-0.5">{{ now()->format('H:i:s') }} WIB</p>
-                </div>
+                </div> -->
 
-                <div class="bg-gray-100 h-12 pl-2 pr-5 flex items-center space-x-3 rounded-2xl">
+                <!-- <div class="bg-gray-100 h-12 pl-2 pr-5 flex items-center space-x-3 rounded-2xl">
                     <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center overflow-hidden shadow-sm border border-gray-100">
                         <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                     </div>
@@ -84,7 +81,7 @@
                         <p class="text-sm font-bold text-gray-800 leading-tight">Admin Abdel</p>
                         <p class="text-[10px] text-gray-400 leading-tight mt-0.5">Pengelola Website</p>
                     </div>
-                </div>
+                </div> -->
             </div>
         </header>
 

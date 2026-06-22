@@ -94,9 +94,9 @@
                             Login
                         </button>
 
-                        <div class="mt-4">
+                        <!-- <div class="mt-4">
                             <a href="#" class="text-sm text-gray-700 hover:text-red-600 transition">Lupa kata sandi?</a>
-                        </div>
+                        </div> -->
                     </form>
                 </div>
             </div>
